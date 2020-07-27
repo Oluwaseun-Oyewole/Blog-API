@@ -13,6 +13,8 @@ from rest_framework.authentication import(
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.permissions import IsAdminUser
 from rest_framework import generics, mixins
+from .permissions import IsOwnerOrReadOnly
+from django.db.models import Q
 
 
 
@@ -60,9 +62,10 @@ class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
 
+
     # authentication_classes = [SessionAuthentication, BasicAuthentication]
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
 
 
 

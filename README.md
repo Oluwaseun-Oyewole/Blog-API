@@ -1,1 +1,1 @@
-# Django_Blog_Rest_API
+#### Blog API with Django REST
